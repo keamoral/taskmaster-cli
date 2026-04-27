@@ -17,3 +17,17 @@ if (cmd === 'list') {
     });
   }
 }
+
+// Agrega en index.js
+const title = process.argv.slice(3).join(' ');
+
+if (cmd === 'add') {
+  if (!title) {
+    console.log('Uso: node index.js add <título>');
+    process.exit(1);
+  }
+  const tasks = readTasks();
+  tasks.push({ id: Date.now(), title, done: false });
+  writeTasks(tasks);
+  console.log(`✓ Tarea "${title}" agregada.`);
+}
